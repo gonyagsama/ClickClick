@@ -4,15 +4,25 @@ using UnityEngine;
 
 public class NoteManager : MonoBehaviour
 {
+  
     public static NoteManager instance;
+    [SerializeField] private NoteGroup[] noteGroupArr;
 
     private void Awake()
     {
         instance = this;
     }
 
-    public void OnInput(KeyCode keycode)
+    public void OnInput(KeyCode keyCode)
     {
-        Debug.Log("Keycode= " + keycode);
+
+        if (keyCode == KeyCode.A)
+        {
+            noteGroupArr[0].OnInput(true);
+        }
+        if (keyCode == KeyCode.S)
+        {
+            noteGroupArr[1].OnInput(true);
+        }
     }
 }
