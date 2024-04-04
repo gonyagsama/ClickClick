@@ -8,21 +8,25 @@ public class NoteManager : MonoBehaviour
     public static NoteManager instance;
     [SerializeField] private NoteGroup[] noteGroupArr;
 
+
+
     private void Awake()
     {
         instance = this;
     }
-
+    
+   
     public void OnInput(KeyCode keyCode)
     {
+        int randld = Random.Range(0, noteGroupArr.Length);
+        bool isApple = randld == 0 ? true : false;
 
-        if (keyCode == KeyCode.A)
+        foreach (NoteGroup noteGroup in noteGroupArr)
         {
-            noteGroupArr[0].OnInput(true);
-        }
-        if (keyCode == KeyCode.S)
-        {
-            noteGroupArr[1].OnInput(true);
+            if (keyCode == noteGroup.KeyCode)
+            {
+                noteGroup.OnInput(isApple);
+            }
         }
     }
 }

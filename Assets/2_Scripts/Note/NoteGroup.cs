@@ -14,6 +14,15 @@ public class NoteGroup : MonoBehaviour
     [SerializeField] private Sprite normalBtnSprite;
     [SerializeField] private Sprite selectBtnSprite;
     [SerializeField] private Animation anim;
+    [SerializeField] private KeyCode keyCode;
+
+    public KeyCode KeyCode
+    {
+        get
+        {
+            return keyCode;
+        }
+    }
 
     private List<Note> noteList = new List<Note>();
 
@@ -23,22 +32,45 @@ public class NoteGroup : MonoBehaviour
     {
         for (int i = 0; i < noteMaxNum; i++)
         {
-            GameObject noteGameObj = Instantiate(notePrefab);
-            noteGameObj.transform.SetParent(noteSpwan.transform);
-            noteGameObj.transform.localPosition = Vector3.up * noteList.Count * noteGap;
-            Note note = noteGameObj.GetComponent<Note>();
-
-            noteList.Add(note);
+            CreateNote(true);
         }
-       
+
     }
-    public void OnInput(bool isSelect)
+
+    private void CreateNote(bool isApple)
     {
-        if (isSelect)
+        GameObject noteGameObj = Instantiate(notePrefab);
+        noteGameObj.transform.SetParent(noteSpwan.transform);
+        noteGameObj.transform.localPosition = Vector3.up * noteList.Count * noteGap;
+        Note note = noteGameObj.GetComponent<Note>();
+        note.SetSprite(isApple);
+
+        noteList.Add(note);
+    }
+
+    public void OnInput(bool isApple)
+    {
+
+        //노트 삭제
+        if (noteList.Count > 0)
         {
+            Note delNote = noteList[0];
+            delNote.DeleteNote();
+            noteList.RemoveAt(0);
+        }
+
+        
+       //줄 내려오기
+        for (int i = 0; i < noteList.Count; i++)
+            noteList[i].transform.localPosition = Vector3.up * i * noteGap;
+
+        //생성
+        CreateNote(isApple);
+
+        //노트 애니메이션
             anim.Play();
             btnSpriteRenderer.sprite = selectBtnSprite;
-        }
+
     }
     
 
