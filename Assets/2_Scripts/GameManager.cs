@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         UiManager.instance.OnScoreChange(score, maxScore);
+        NoteManager.instance.Create();
     }
 }
 

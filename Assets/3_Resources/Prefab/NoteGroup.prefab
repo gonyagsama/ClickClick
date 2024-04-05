@@ -335,11 +335,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   noteMaxNum: 5
   notePrefab: {fileID: 6891222627733401604, guid: 77af7edb8c112824297ce02f14ac2732, type: 3}
-  noteSpwan: {fileID: 0}
+  noteSpwan: {fileID: 3596506479390077573}
   noteGap: 6
   btnSpriteRenderer: {fileID: 6149524237110314179}
   normalBtnSprite: {fileID: 21300000, guid: d7b61edc0b017174095824530172ad1f, type: 3}
   selectBtnSprite: {fileID: 21300000, guid: 4fce3950ae84d9c46a154454c898bf17, type: 3}
+  keyCodeTmp: {fileID: 631729069405216991}
   anim: {fileID: 7441408609829778539}
 --- !u!111 &7441408609829778539
 Animation:
