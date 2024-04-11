@@ -9,13 +9,26 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     [SerializeField] private int maxScore;
-    private int score;
+    [SerializeField] private int noteGroupCreateScore = 10;
 
-    public void CalculateScore(bool isApple)
+    private int score;
+    private int nextNoteGroupUnlockCnt;
+
+    [SerializeField] private float maxTime = 30f;
+
+    public void CalculateScore(bool isCorrect)
     {
-        if (isApple)
+        if (isCorrect)
         {
             score++;
+            nextNoteGroupUnlockCnt++;
+
+            if (noteGroupCreateScore <= nextNoteGroupUnlockCnt)
+            {
+                nextNoteGroupUnlockCnt = 0;
+                NoteManager.instance.CreateNoteGroup();
+
+            }
         }
         else
         {
@@ -36,6 +49,22 @@ public class GameManager : MonoBehaviour
     {
         UiManager.instance.OnScoreChange(score, maxScore);
         NoteManager.instance.Create();
+
+        StartCoroutine(TimerCoroutine());
+    }
+
+    IEnumerator TimerCoroutine()
+    {
+        float currentTime = 0f;
+
+        while (currentTime < maxTime)
+        {
+            currentTime += Time.deltaTime;
+            UiManager.instance.OnTimerChange(currentTime, maxTime);
+            yield return null;
+        }
+
+        Debug.Log("Game Over...");
     }
 }
 
