@@ -36,6 +36,8 @@ public class NoteManager : MonoBehaviour
     public void CreateNoteGroup()
     {
         int noteGroupCount = noteGroupList.Count;
+        if (wholeKeyCodesArr.Length == noteGroupCount)
+            Debug.Log("");
         KeyCode keyCode = this.wholeKeyCodesArr[noteGroupCount];
         CreateNoteGroup(keyCode);
     }
