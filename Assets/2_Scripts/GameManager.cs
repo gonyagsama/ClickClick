@@ -6,6 +6,10 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
+    [SerializeField] AudioClip ac;
+    [SerializeField] AudioClip ac2;
+    [SerializeField] AudioSource acSource;
+
     [SerializeField] private int maxScore;
     [SerializeField] private int noteGroupCreateScore = 10;
     private bool isGameClear = false;
@@ -35,7 +39,6 @@ public class GameManager : MonoBehaviour
 
             if (isGameClear || isGameOver)
             {
-
                 minTime = PlayerPrefs.GetFloat("minTime", 1000f);
                 if (minTime >= myTime)
                 {
@@ -60,6 +63,7 @@ public class GameManager : MonoBehaviour
         {
             score++;
             nextNoteGroupUnlockCnt++;
+            acSource.PlayOneShot(ac);
 
             if (noteGroupCreateScore <= nextNoteGroupUnlockCnt)
             {
@@ -76,6 +80,7 @@ public class GameManager : MonoBehaviour
         else
         {
             score--;
+            acSource.PlayOneShot(ac2);
         }
 
 
@@ -100,6 +105,9 @@ public class GameManager : MonoBehaviour
         NoteManager.instance.Create();
 
         StartCoroutine(TimerCoroutine());
+
+        acSource = GetComponent<AudioSource>();
+
     }
 
     IEnumerator TimerCoroutine()
