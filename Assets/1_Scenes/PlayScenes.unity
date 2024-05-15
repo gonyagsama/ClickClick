@@ -595,6 +595,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 748820f1863813e49ad991a1e03619a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hd: {fileID: 0}
   noteGrouoPrefab: {fileID: 3809863374421232522, guid: 19a1824cbff68e34296b8ec348b6d985, type: 3}
   noteGroupGap: 12.1
   wholeKeyCodesArr: 6100000073000000640000006600000067000000680000006a0000006b0000006c000000

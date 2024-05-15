@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class NoteManager : MonoBehaviour
 {
+    [SerializeField] private Animation hd;
+
     public static NoteManager instance;
 
     [SerializeField] private GameObject noteGrouoPrefab;
@@ -16,6 +18,7 @@ public class NoteManager : MonoBehaviour
     };
 
     [SerializeField] private int initNoteGroupNum = 2;
+    
 
     private List<NoteGroup> noteGroupList = new List<NoteGroup>();
 

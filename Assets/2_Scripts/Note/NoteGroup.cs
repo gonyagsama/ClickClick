@@ -16,6 +16,10 @@ public class NoteGroup : MonoBehaviour
     [SerializeField] private Sprite selectBtnSprite;
     [SerializeField] private TextMeshPro keyCodeTmp;
     [SerializeField] private Animation anim;
+    [SerializeField] private GameObject ap;
+    [SerializeField] private GameObject ap2;
+
+
     private KeyCode keyCode;
 
     public KeyCode KeyCode
@@ -64,8 +68,23 @@ public class NoteGroup : MonoBehaviour
             noteList.RemoveAt(0);
         }
 
-        
-       //줄 내려오기
+        //사과 애니메이션
+        if (isApple) {
+        GameObject Newap = Instantiate(ap);
+        Newap.transform.SetParent(noteSpwan.transform);
+        Newap.transform.localPosition = new Vector3(0f, 40.1f, 0f);
+        Destroy(Newap,0.4f);
+        }
+        else
+        {
+            GameObject Newap2 = Instantiate(ap2);
+            Newap2.transform.SetParent(noteSpwan.transform);
+            Newap2.transform.localPosition = new Vector3(0f, 40.1f, 0f);
+            Destroy(Newap2, 0.4f);
+
+        }
+
+        //줄 내려오기
         for (int i = 0; i < noteList.Count; i++)
             noteList[i].transform.localPosition = Vector3.up * i * noteGap;
 

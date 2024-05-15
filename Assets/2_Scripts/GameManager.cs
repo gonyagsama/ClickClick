@@ -52,6 +52,7 @@ public class GameManager : MonoBehaviour
 
             else
             {
+                
                 return false;
             }
         }
@@ -127,6 +128,7 @@ public class GameManager : MonoBehaviour
 
         //GameOver
         isGameOver = true;
+        SceneManager.LoadScene("OverScenes");
     }
 }
 

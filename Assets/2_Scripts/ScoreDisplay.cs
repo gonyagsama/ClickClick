@@ -9,7 +9,7 @@ public class ScoreDisplay : MonoBehaviour
 
     void Start()
     {
-        GetComponent<Text>().text = "BestTime : " + GameManager.minTime;
+        GetComponent<Text>().text = "최고 기록 : " + GameManager.minTime.ToString("N0");
         Debug.Log("1BestTime : " + GameManager.minTime);
 
         float minTime = PlayerPrefs.GetFloat("minTime", 1000f);
